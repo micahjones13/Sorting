@@ -16,6 +16,7 @@ def merge(arrA, arrB):
         # if a is greater than then length of arrA, then it's empty. Fill in merged with arrB automatically
         if a >= len(arrA):
             merged_arr[i] = arrB[b]
+            # up counters if the if statement is hit in order to move up in comparisons
             b += 1
         # same thing here, but b is empty
         elif b >= len(arrB):
@@ -56,7 +57,7 @@ def merge_sort(arr):
     right = merge_sort(split_right)
     # put em back together
     arr = merge(left, right)
-
+    # print(arr, 'merge_sort arr return')
     return arr
 
 
