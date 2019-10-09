@@ -107,6 +107,49 @@ def quicksort(arr):
     return quicksort(left) + [pivot] + quicksort(right)
     # while LHS and RHS are greater than 1, repeat stpes 1-3 on each
 
+# merge sort from class
+
+
+def merge1(arrA, arrB):
+    # take 2 sorted arrays, merge them into single sorted array containg all elements from both
+    # create new array of len(arrA + arrB)
+    elements = len(arrA) + len(arrB)
+    merged_arr = [0] * elements
+    # create markers for a and b starting at 0
+    a = 0
+    b = 0
+    # while a nad b are < len(arrA) and len(arrB)
+    for i in range(0, elements):
+        # compare the items at indices a/b, add the smallest to the merged array
+        # increment a or b, whichever was smallest
+        if a >= len(arrA):
+            merged_arr[i] = arrB[b]
+            b += 1
+        elif b >= len(arrB):
+            merged_arr[i] = arrA[a]
+            a += 1
+        elif arrA[a] < arrB[b]:
+            merged_arr[i] = arrA[a]
+            a += 1
+        else:  # arrA[a] >= arrB[b]:
+            merged_arr[i] = arrB[b]
+            b += 1
+    return merged_arr
+
+
+def merge_sort1(arr):
+    # take an unsorted list, retrurn sorted list
+    if len(arr) <= 1:
+        return arr
+    else:
+        # split this in half, sort the halves
+        left_half = arr[0: len(arr) // 2]
+        right_half = arr[len(arr) // 2:]
+        left_sorted = merge_sort1(left_half)
+        right_sorted = merge_sort(right_half)
+        # merge sorted halves
+        return merge(left_sorted, right_sorted)
+
 
 # print(quicksort(my_arr))
 # print(merge(arr1, arr2))
